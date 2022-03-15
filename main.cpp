@@ -22,8 +22,11 @@ int main(int argc, char* argv[]) {
 	std::ofstream output_file(argv[2], std::ios::binary);
 
 	std::vector<unsigned char> buffer(std::istreambuf_iterator<char>(input_file), {}); // read the file
-	for (auto i = 0; i < buffer.size(); i++) { buffer[i] ^= key; } // xor each byte with key
-	for (auto& byte : buffer) { output_file.write((const char*)&byte, sizeof(byte)); } // write file with encrypted bytes
+
+	for (auto i = 0; i < buffer.size(); i++) { 
+		buffer[i] ^= key;  // xor each byte with key
+		output_file.write((const char*)&buffer[i], sizeof(buffer[i])); // write file with encrypted bytes
+	}
 
 	log("Written to output file: %s\n", argv[2]);
 
