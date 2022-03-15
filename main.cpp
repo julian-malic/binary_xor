@@ -4,7 +4,6 @@
 #include <string>
 #include <stdio.h>
 #include <fstream>
-#include <thread>
 
 #define log(text, ...) printf(text, __VA_ARGS__);
 
